@@ -1,0 +1,23 @@
+First Project: EDA
+
+Research Questions:
+
+Expected Goals:
+- Where are most shots coming from?
+- Where are most goals coming from?
+- Who is scoring goals
+
+- Visuals
+- Heatmap of shots
+- heatmap of goals
+- Box plot of 
+- Histogram of player salaries vs goals
+
+- Expected Goals
+
+
+
+This is a logistic regression model, where the response is goal / no goal, and the predictors are distance, angle, player, salary, Expected
+
+
+Source
