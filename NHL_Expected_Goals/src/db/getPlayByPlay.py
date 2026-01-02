@@ -1,3 +1,4 @@
+
 import requests
 import pandas as pd
 import sqlite3
@@ -11,7 +12,7 @@ cursor = conn.cursor()
 gameIds = pd.read_sql_query("SELECT gameId FROM games", conn).gameId
 
 
-shotsDf = pd.DataFrame(columns = ["eventId", "gameId", "teamId", "xDistance", "yDistance", "zoneCode", "homeTeamDefendingSide"])
+shotsDf = pd.DataFrame(columns = ["eventId", "gameId", "teamId", "xDistance", "yDistance", "zoneCode", "homeTeamDefendingSide", "result"])
 for game in gameIds:
     print(url+str(game)+ext)
     try:
@@ -34,7 +35,8 @@ for game in gameIds:
                             "xDistance" : play["details"]["xCoord"],
                             "yDistance" : play["details"]["yCoord"],
                             "zoneCode" : play["details"]["zoneCode"],
-                            "homeTeamDefendingSide" : play["homeTeamDefendingSide"]
+                            "homeTeamDefendingSide" : play["homeTeamDefendingSide"],
+                            "result" : play["typeDescKey"]
                             }
                 shotsDf.loc[len(shotsDf)] = new_row
 
@@ -42,6 +44,8 @@ for game in gameIds:
                 continue
 
 print(shotsDf.head())
+
+
 
 shotsDf.to_sql("shots", conn, if_exists='append',index = False)
 
